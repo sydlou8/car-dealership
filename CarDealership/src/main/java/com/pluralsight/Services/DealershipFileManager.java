@@ -7,11 +7,11 @@ import java.io.*;
 import java.util.Scanner;
 
 public class DealershipFileManager {
-    static final String DEALERSHIP_FILE = "dealership.csv";
-    static final String DIRECTORY = "file";
-    static String [] title = new String[3];
-    // get
-    public static Dealership getDealership() {
+    final String DEALERSHIP_FILE = "dealership.csv";
+    final String DIRECTORY = "file";
+    String [] title = new String[3];
+
+    public Dealership getDealership() {
         File directory = new File(DIRECTORY);
         if(!directory.exists()) directory.mkdir();
 
@@ -44,7 +44,7 @@ public class DealershipFileManager {
             return null;
         }
     }
-    public static void saveDealership(Dealership dealership){
+    public void saveDealership(Dealership dealership){
         File file = new File(DIRECTORY + "/" + DEALERSHIP_FILE);
         try (PrintWriter writer = new PrintWriter(new FileWriter(file))) {
             writer.printf("%s|%s|%s\n", title[0], title[1], title[2]);
