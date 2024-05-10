@@ -4,7 +4,6 @@ import com.pluralsight.Models.Dealership;
 import com.pluralsight.Models.Vehicle;
 import com.pluralsight.Services.DealershipFileManager;
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -166,6 +165,11 @@ public class UserInterface {
         }
     }
     private void processRemoveVehicleRequest() {
-
+        System.out.print("Please enter Vin number of Car: ");
+        int vin = Integer.parseInt(userInput.nextLine().strip());
+        dealership.getAllVehicles().stream()
+                .filter(vehicle -> vehicle.getVin() == vin)
+                .forEach(vehicle -> dealership.removeVehicle(vehicle));
+        System.out.println("Vehicle has been removed from list. Exit program to save changes.");
     }
 }

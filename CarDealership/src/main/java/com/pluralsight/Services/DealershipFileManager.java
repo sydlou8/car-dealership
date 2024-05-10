@@ -9,7 +9,6 @@ import java.util.Scanner;
 public class DealershipFileManager {
     final String DEALERSHIP_FILE = "dealership.csv";
     final String DIRECTORY = "file";
-    String [] title = new String[3];
 
     public Dealership getDealership() {
         File directory = new File(DIRECTORY);
@@ -19,7 +18,7 @@ public class DealershipFileManager {
         try {
             FileInputStream fileStream = new FileInputStream(file);
             Scanner fileScanner = new Scanner(fileStream);
-            title = fileScanner.nextLine().split("\\|");
+            String[] title = fileScanner.nextLine().split("\\|");
             Dealership dealership = new Dealership(title[0], title[1], title[2]);
             while(fileScanner.hasNext()) {
                 String[] dealershipInfo = fileScanner.nextLine().split("\\|");
@@ -47,7 +46,7 @@ public class DealershipFileManager {
     public void saveDealership(Dealership dealership){
         File file = new File(DIRECTORY + "/" + DEALERSHIP_FILE);
         try (PrintWriter writer = new PrintWriter(new FileWriter(file))) {
-            writer.printf("%s|%s|%s\n", title[0], title[1], title[2]);
+            writer.printf("%s|%s|%s\n", dealership.getName(), dealership.getAddress(), dealership.getPhone());
             dealership.getAllVehicles().forEach(vehicle -> {
                 writer.printf("%d|%d|%s|%s|%s|%s|%d|%4.2f\n",
                         vehicle.getVin(),
