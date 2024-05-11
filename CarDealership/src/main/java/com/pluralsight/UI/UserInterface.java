@@ -64,12 +64,13 @@ public class UserInterface {
                     break;
                 case 8:
                     processAddVehicleRequest();
+                    publish();
                     break;
                 case 9:
                     processRemoveVehicleRequest();
+                    publish();
                     break;
                 case 99:
-                    publish();
                     System.out.println("All changes to dealership.csv has been saved.");
                     System.exit(0);
                 default:
