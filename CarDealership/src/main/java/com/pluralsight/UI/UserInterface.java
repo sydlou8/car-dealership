@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class UserInterface {
     private Dealership dealership;
-    Scanner userInput = new Scanner(System.in);
+    private Scanner userInput = new Scanner(System.in);
     public UserInterface() {}
     private void init() {
         DealershipFileManager dfm = new DealershipFileManager();
@@ -77,10 +77,12 @@ public class UserInterface {
                     System.out.println("Please Enter a proper response: ");
                     break;
                 }
-            } catch (Exception _){}
+            } catch (Exception _) {
+                System.out.println("Please Enter a proper response: ");
+            }
         }
     }
-    //
+    // <editor-fold desc="Processes">
     private void processGetByPriceRequest() {
         try{
             System.out.print("Please Enter Min Price Range: ");
@@ -89,7 +91,9 @@ public class UserInterface {
             double max = Double.parseDouble(userInput.nextLine().strip());
             System.out.println("Results: ");
             dealership.display(dealership.getVehiclesByPrice(min, max));
-        } catch (Exception _) {}
+        } catch (Exception _) {
+            System.out.println("Incorrect Response -- Returning to Main Menu" );
+        }
     }
     private void processGetByMakeModelRequest() {
         try{
@@ -99,7 +103,9 @@ public class UserInterface {
             String model = userInput.nextLine().strip();
             System.out.println("Results: ");
             dealership.display(dealership.getVehiclesByMakeModel(make, model));
-        } catch (Exception _) {}
+        } catch (Exception _) {
+            System.out.println("Incorrect Response -- Returning to Main Menu" );
+        }
     }
     private void processGetByYearRequest() {
         try{
@@ -109,7 +115,10 @@ public class UserInterface {
             int max = Integer.parseInt(userInput.nextLine().strip());
             System.out.println("Results: ");
             dealership.display(dealership.getVehiclesByYear(min, max));
-        } catch (Exception _) {}
+        } catch (Exception _) {
+            System.out.println("Incorrect Response -- Returning to Main Menu" );
+        }
+
     }
     private void processGetByColorRequest() {
         try{
@@ -117,7 +126,9 @@ public class UserInterface {
             String color = userInput.nextLine().strip();
             System.out.println("Results: ");
             dealership.display(dealership.getVehiclesByColor(color));
-        } catch (Exception _) {}
+        } catch (Exception _) {
+            System.out.println("Incorrect Response -- Returning to Main Menu" );
+        }
     }
     private void processGetByMileageRequest() {
         try{
@@ -127,7 +138,9 @@ public class UserInterface {
             int max = Integer.parseInt(userInput.nextLine().strip());
             System.out.println("Results: ");
             dealership.display(dealership.getVehiclesByMileage(min, max));
-        } catch (Exception _) {}
+        } catch (Exception _) {
+            System.out.println("Incorrect Response -- Returning to Main Menu" );
+        }
     }
     private void processGetByVehicleTypeRequest() {
         try{
@@ -135,7 +148,9 @@ public class UserInterface {
             String vehicleType = userInput.nextLine().strip();
             System.out.println("Results: ");
             dealership.display(dealership.getVehiclesByType(vehicleType));
-        } catch (Exception _) {}
+        } catch (Exception _) {
+            System.out.println("Incorrect Response -- Returning to Main Menu" );
+        }
     }
     private void processGetAllVehicleRequest() {
         dealership.display(dealership.getAllVehicles());
@@ -160,9 +175,8 @@ public class UserInterface {
             System.out.print("\tPrice: $");
             final double PRICE = Double.parseDouble(userInput.nextLine().strip());
             dealership.addVehicle(new Vehicle(VIN, YEAR, MAKE, MODEL, VEHICLE_TYPE, COLOR, MILEAGE, PRICE));
-        } catch (Exception _){
-            System.out.println("-".repeat(10)+"INCORRECT INPUT"+ "-".repeat(10));
-            System.out.println(" ".repeat(10)+ "RETURNING TO MENU");
+        } catch (Exception _) {
+            System.out.println("Incorrect Response -- Returning to Main Menu" );
         }
     }
     private void processRemoveVehicleRequest() {
@@ -173,4 +187,5 @@ public class UserInterface {
                 .forEach(vehicle -> dealership.removeVehicle(vehicle));
         System.out.println("Vehicle has been removed from list. Exit program to save changes.");
     }
+    // </editor-fold>
 }

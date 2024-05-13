@@ -11,7 +11,8 @@ This project was to create a program that holds information about a Car Dealersh
 in the dealership, as well as allow users to search for vehicles in the dealership by different categories! All information is 
 stored in both a List and a .csv file.
 ## UML Diagram
-
+![UML Diagram](media/UML.png)
+This is my basic planning for the project in Diagram form
 ## Structure
 ### Main
 This class just utilizes the CarDealership.run() method to start the application.
@@ -82,3 +83,12 @@ When these methods (add/remove) are called, they are added to dealership Array L
 
 ![Search By Color](media/Program_SearchByColor.png)
 The getVehiclesByColor Method
+
+![Error1 - Improper Input](media/Error1.png)
+Error shows improper integer input. Tells user to input a correct response.
+![Error1 - Switch/Case/Default](media/ErrorSwitchDefault.png)
+Uses the default case in the Switch so anything other than 1-9 and 99 shows incorrect response.
+![Error2 - Improper Input](media/Error2.png)
+Error shows improper input. Tells user to input a correct response.
+![Error2 - Try/Catch](media/ErrorTryCatch.png)
+Uses Try/Catch to handle if anything other than an integer was used.
